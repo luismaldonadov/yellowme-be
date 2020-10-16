@@ -14,7 +14,8 @@ const database = (function start_database() {
   _init_closure();
   return {
     get(key) {
-      return fakeDatabase.get(key);
+      const result = fakeDatabase.get(key);
+      return result ? result : null;
     },
     set(key, value) {
       fakeDatabase.set(key, value);
