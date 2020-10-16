@@ -2,9 +2,10 @@
   "name": "yellowme-be",
   "version": "1.0.0",
   "description": "Yellowme backend interview webservice",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "dev": "nodemon --exec babel-node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/luismaldonadov/yellowme-be/issues"
   },
-  "homepage": "https://github.com/luismaldonadov/yellowme-be#readme"
+  "homepage": "https://github.com/luismaldonadov/yellowme-be#readme",
+  "dependencies": {
+    "@babel/core": "^7.12.1",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.5"
+  }
 }
