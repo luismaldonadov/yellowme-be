@@ -1,0 +1,6 @@
+{
+  "name": "yellowme-be",
+  "verbose": true,
+  "testRegex": ".*.unit.test.js$",
+  "testEnvironment": "node"
+}
