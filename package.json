@@ -1,0 +1,25 @@
+{
+  "name": "yellowme-be",
+  "version": "1.0.0",
+  "description": "Yellowme backend interview webservice",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luismaldonadov/yellowme-be.git"
+  },
+  "keywords": [
+    "yellowme",
+    "node",
+    "express",
+    "backend"
+  ],
+  "author": "Luis Maldonado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luismaldonadov/yellowme-be/issues"
+  },
+  "homepage": "https://github.com/luismaldonadov/yellowme-be#readme"
+}
