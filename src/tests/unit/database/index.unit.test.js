@@ -12,10 +12,4 @@ describe('test fake database implementation', () => {
     expect(insertResult).toEqual(true);
     expect(record).toEqual('value');
   });
-
-  test('returns all records from databse', () => {
-    const databaseRecords = database.all();
-
-    expect(databaseRecords.size).toEqual(1);
-  });
 });
