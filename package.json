@@ -4,7 +4,7 @@
   "description": "Yellowme backend interview webservice",
   "main": "src/app.js",
   "scripts": {
-    "test": "test",
+    "test": "jest --runInBand",
     "dev": "nodemon --exec babel-node src/app.js"
   },
   "repository": {
@@ -32,5 +32,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.5"
+  },
+  "devDependencies": {
+    "babel-jest": "^26.5.2",
+    "jest": "^26.5.3",
+    "regenerator-runtime": "^0.13.7"
   }
 }
