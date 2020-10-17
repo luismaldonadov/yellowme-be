@@ -11,7 +11,7 @@ import { ValidationError } from 'joi';
 export default function errorWrapper(res, error) {
   switch (error instanceof ValidationError) {
     case true:
-      return res.status(422).send({ error: error.message });
+      return res.status(422).send({ error: 'ValidationError' });
     default:
       return res
         .status(500)
