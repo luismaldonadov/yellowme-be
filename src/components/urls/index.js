@@ -1,4 +1,4 @@
-import database from '../../db';
+const database = require('../../db');
 
 /**
  * Creates a short url with a provided long url.
@@ -55,8 +55,6 @@ function getRandomUrl() {
   }
   return randomUrl;
 }
-
-//http://short.url/C34W77
 
 module.exports = {
   processBulkUrls,
