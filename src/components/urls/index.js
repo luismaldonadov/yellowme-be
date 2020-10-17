@@ -9,56 +9,54 @@ import database from '../../db';
  * @returns {String}
  */
 function shortenUrl(longUrl) {
-  const shortPath = getRandomUrl('');
+  const shortPath = getRandomUrl();
   const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
   database.set(fullShortUrl, longUrl);
   return fullShortUrl;
 }
 
 /**
- * Recurses on building short urls for a given
+ * Builds short urls for a given
  * array of urls
  * @param {Array} urls - array of url as strings
- * @param {Number} urlIndex - url index of url that is being processd
- * @param {Array} shortUrls - resulting array of objects with shortUrl and url
  * @returns {Array}
  */
-function processBulkUrls(urls, urlIndex, shortUrls) {
-  if (urlIndex >= urls.length) {
-    return shortUrls;
-  }
-  const longUrl = urls[urlIndex];
-  const shortPath = getRandomUrl('');
-  const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
-  shortUrls.push({ shortUrl: fullShortUrl, url: longUrl });
-  urlIndex++;
-  return processBulkUrls(urls, urlIndex, shortUrls);
+function processBulkUrls(urls) {
+  const shortUrls = urls.map((longUrl) => {
+    const shortPath = getRandomUrl();
+    const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
+    return { shortUrl: fullShortUrl, url: longUrl };
+  });
+  return shortUrls;
 }
 
 /**
- * Recurses until building a short url provided
- * by the length of the enviromente variable. Url
+ * Builds a short url provided
+ * by the length of the enviroment variable. Url
  * alternates between a character and a letter
  * @param {String} randomUrl
  * @returns {String}
  */
-function getRandomUrl(randomUrl) {
-  if (randomUrl.length == process.env.MAX_LENGTH_SHORT_URL) {
-    return randomUrl;
+function getRandomUrl() {
+  let randomUrl = '';
+  for (let index = 0; index < process.env.MAX_LENGTH_SHORT_URL; index++) {
+    switch (index % 2) {
+      case 0:
+        const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const randomCharacter =
+          alphabet[Math.floor(Math.random() * alphabet.length)];
+        randomUrl = `${randomUrl}${randomCharacter}`;
+        break;
+      default:
+        const randomNumber = Math.floor(Math.random() * Math.floor(9));
+        randomUrl = `${randomUrl}${randomNumber}`;
+        break;
+    }
   }
-
-  const urlLength = randomUrl.length;
-  switch (urlLength % 2) {
-    case 0:
-      const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const randomCharacter =
-        alphabet[Math.floor(Math.random() * alphabet.length)];
-      return getRandomUrl(`${randomUrl}${randomCharacter}`);
-    default:
-      const randomNumber = Math.floor(Math.random() * Math.floor(9));
-      return getRandomUrl(`${randomUrl}${randomNumber}`);
-  }
+  return randomUrl;
 }
+
+//http://short.url/C34W77
 
 module.exports = {
   processBulkUrls,
