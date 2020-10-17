@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 import database from '../../../../db';
 import errorWrapper from '../../../../utils/errorWrapper';
-import shortenUrl from '../../../../components/urls';
+const { shortenUrl, processBulkUrls } = require('../../../../components/urls');
 const { validateUrl, validateBulkUrls } = require('./schema');
 
 async function getUrlController(req, res, next) {
@@ -36,7 +36,8 @@ async function bulkCreateShortUrlController(req, res, next) {
   try {
     const urlsArray = req.body.urls;
     validateBulkUrls(urlsArray);
-    res.send();
+    const shortUrls = processBulkUrls(urlsArray, 0, []);
+    res.status(201).send(shortUrls);
   } catch (error) {
     return errorWrapper(res, error);
   }

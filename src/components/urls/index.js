@@ -8,11 +8,23 @@ import database from '../../db';
  * @param {String} longUrl
  * @returns {String}
  */
-export default function shortenUrl(longUrl) {
+function shortenUrl(longUrl) {
   const shortPath = getRandomUrl('');
   const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
   database.set(fullShortUrl, longUrl);
   return fullShortUrl;
+}
+
+function processBulkUrls(urls, urlIndex, shortUrls) {
+  if (urlIndex >= urls.length) {
+    return shortUrls;
+  }
+  const longUrl = urls[urlIndex];
+  const shortPath = getRandomUrl('');
+  const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
+  shortUrls.push({ shortUrl: fullShortUrl, url: longUrl });
+  urlIndex++;
+  return processBulkUrls(urls, urlIndex, shortUrls);
 }
 
 /**
@@ -39,3 +51,8 @@ function getRandomUrl(randomUrl) {
       return getRandomUrl(`${randomUrl}${randomNumber}`);
   }
 }
+
+module.exports = {
+  processBulkUrls,
+  shortenUrl,
+};
