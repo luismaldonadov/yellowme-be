@@ -1,7 +1,7 @@
 import request from 'supertest';
 
 import app from '../../../../../../app';
-import urlShortener from '../../../../../../components/urls';
+const { shortenUrl } = require('../../../../../../components/urls');
 
 const apiBase = '/api/v1';
 
@@ -9,7 +9,7 @@ describe('getUrlContoller', () => {
   const endpoint = '/short_urls';
   test('with valid url param, returns 302', async () => {
     const longUrl = 'https://test1.com';
-    const shortUrl = urlShortener(longUrl);
+    const shortUrl = shortenUrl(longUrl);
 
     const { status, redirect, header } = await request(app)
       .get(`${apiBase}${endpoint}`)
@@ -79,3 +79,27 @@ describe('createShortUrlContoller', () => {
     expect(status).toBe(422);
   });
 });
+
+describe('bulkCreateShortUrlContoller', () => {
+  const endpoint = '/short_urls/bulk';
+
+  test('with an array of 1000 urls, returns a 201 with resutls', async () => {
+    const fakeUrls = _fakeBulkUrlGeneratorFixture(1000, 0, []);
+
+    const { status, body } = await request(app)
+      .post(`${apiBase}${endpoint}`)
+      .send({ urls: fakeUrls });
+
+    expect(status).toBe(201);
+    expect(body.length).toBe(1000);
+  });
+});
+
+function _fakeBulkUrlGeneratorFixture(amount, urlNumber, fakeUrls) {
+  if (fakeUrls.length >= amount) {
+    return fakeUrls;
+  }
+  fakeUrls.push(`https://fake${urlNumber}.com`);
+  urlNumber++;
+  return _fakeBulkUrlGeneratorFixture(amount, urlNumber, fakeUrls);
+}

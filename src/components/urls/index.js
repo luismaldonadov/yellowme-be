@@ -15,6 +15,14 @@ function shortenUrl(longUrl) {
   return fullShortUrl;
 }
 
+/**
+ * Recurses on building short urls for a given
+ * array of urls
+ * @param {Array} urls - array of url as strings
+ * @param {Number} urlIndex - url index of url that is being processd
+ * @param {Array} shortUrls - resulting array of objects with shortUrl and url
+ * @returns {Array}
+ */
 function processBulkUrls(urls, urlIndex, shortUrls) {
   if (urlIndex >= urls.length) {
     return shortUrls;
