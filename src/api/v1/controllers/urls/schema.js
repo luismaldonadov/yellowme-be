@@ -6,6 +6,10 @@ const urlSchema = Joi.object({
   url: Joi.string().pattern(urlRegex).required(),
 });
 
+const bulkUrlSchema = Joi.object({
+  urls: Joi.array().items(Joi.string().pattern(urlRegex)).required().min(1),
+});
+
 function validateUrl(url) {
   const validationResult = urlSchema.validate({ url });
   switch (validationResult.error instanceof ValidationError) {
@@ -16,4 +20,17 @@ function validateUrl(url) {
   }
 }
 
-export default validateUrl;
+function validateBulkUrls(urls) {
+  const validationResult = bulkUrlSchema.validate({ urls });
+  switch (validationResult.error instanceof ValidationError) {
+    case true:
+      throw new ValidationError(validationResult.error);
+    default:
+      break;
+  }
+}
+
+module.exports = {
+  validateUrl,
+  validateBulkUrls,
+};

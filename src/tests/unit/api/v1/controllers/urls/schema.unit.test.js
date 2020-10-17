@@ -1,4 +1,6 @@
-import validateUrl from '../../../../../../api/v1/controllers/urls/schema';
+const {
+  validateUrl,
+} = require('../../../../../../api/v1/controllers/urls/schema');
 
 import { ValidationError } from 'joi';
 
