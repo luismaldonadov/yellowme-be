@@ -14,6 +14,6 @@ describe('test url schema ', () => {
   });
 
   test('throws no error when given correct https url', () => {
-    expect(validateUrl('http://test.com')).toBeUndefined();
+    expect(validateUrl('https://test.com')).toBeUndefined();
   });
 });
