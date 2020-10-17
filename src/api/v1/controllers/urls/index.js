@@ -26,7 +26,7 @@ async function createShortUrlController(req, res, next) {
     const longUrl = req.body.url;
     validateUrl(longUrl);
     const shortUrl = shortenUrl(longUrl);
-    return res.send({ shortUrl });
+    return res.status(201).send({ shortUrl });
   } catch (error) {
     return errorWrapper(res, error);
   }
