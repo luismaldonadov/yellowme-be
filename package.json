@@ -4,8 +4,9 @@
   "description": "Yellowme backend interview webservice",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --runInBand",
-    "dev": "nodemon src/index.js"
+    "test": "NODE_PATH=src/ jest --runInBand",
+    "dev": "NODE_PATH=src/ nodemon src/index.js",
+    "start": "NODE_PATH=src/ node src/index.js"
   },
   "repository": {
     "type": "git",
