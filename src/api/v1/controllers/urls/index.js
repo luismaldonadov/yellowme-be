@@ -7,7 +7,6 @@ async function getUrlController(req, res, next) {
   try {
     const urlParam = req.query.url;
     validateUrl(urlParam);
-    console.log('databaes all', database.all());
     const url = database.get(urlParam);
     switch (url) {
       case null:
