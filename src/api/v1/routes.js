@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getUrlController } from './controllers/urls';
+import { getUrlController, createShortUrl } from './controllers/urls';
 
 const router = express.Router();
 const apiBase = '/api/v1';
@@ -10,5 +10,6 @@ const apiBase = '/api/v1';
 */
 
 router.get(`${apiBase}/short_urls`, getUrlController);
+router.post(`${apiBase}/short_urls`, createShortUrl);
 
 export default router;

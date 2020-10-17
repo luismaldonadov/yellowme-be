@@ -1,4 +1,5 @@
 import database from '../../../../db';
+import shortenUrl from '../../../../components/urls';
 
 async function getUrlController(req, res, next) {
   try {
@@ -10,9 +11,9 @@ async function getUrlController(req, res, next) {
       const url = database.get(urlParam);
       switch (urlParam) {
         case null:
-          return res.status(404).send({ short_url: null });
+          return res.status(404).send({ shortUrl: null });
         default:
-          return res.send({ short_url: url });
+          return res.send({ shortUrl: url });
       }
     }
   } catch (error) {
@@ -29,4 +30,14 @@ async function getPagedUrlsController(req, res, next) {
   }
 }
 
-export { getUrlController, getPagedUrlsController };
+async function createShortUrl(req, res, next) {
+  try {
+    const shortUrl = shortenUrl(req.body.url);
+    return res.send({ shortUrl });
+  } catch (error) {
+    console.log('error', error);
+    return res.status(500).send(error);
+  }
+}
+
+export { getUrlController, getPagedUrlsController, createShortUrl };
