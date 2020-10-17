@@ -1,13 +1,17 @@
+import Joi from 'joi';
+
 import database from '../../../../db';
+import errorWrapper from '../../../../utils/errorWrapper';
 import shortenUrl from '../../../../components/urls';
+import validateUrl from './schema';
 
 async function getUrlController(req, res, next) {
   try {
     const urlParam = req.query.url;
-
     if (!urlParam) {
       getPagedUrlsController(req, res, next);
     } else {
+      validateUrl(urlParam);
       const url = database.get(urlParam);
       switch (urlParam) {
         case null:
@@ -17,7 +21,7 @@ async function getUrlController(req, res, next) {
       }
     }
   } catch (error) {
-    return res.status(500).send(error);
+    return errorWrapper(res, error);
   }
 }
 
