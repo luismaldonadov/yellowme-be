@@ -4,7 +4,7 @@
  * urls. By being IFFE we immediately create a closure,
  * and by importing the module anywhere in our application
  * we have access to the database
- * @returns{Object}
+ * @returns {Object}
  */
 const database = (function start_database() {
   let fakeDatabase = null;
