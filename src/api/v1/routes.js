@@ -17,4 +17,4 @@ router.get(`${apiBase}/short_urls`, getUrlController);
 router.post(`${apiBase}/short_urls`, createShortUrlController);
 router.post(`${apiBase}/short_urls/bulk`, bulkCreateShortUrlController);
 
-exports.default = router;
+module.exports = router;
