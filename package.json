@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "dev": "nodemon --exec src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
