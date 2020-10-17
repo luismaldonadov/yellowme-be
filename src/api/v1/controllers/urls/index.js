@@ -3,7 +3,7 @@ import shortenUrl from '../../../../components/urls';
 
 async function getUrlController(req, res, next) {
   try {
-    const urlParam = req.param.url;
+    const urlParam = req.query.url;
 
     if (!urlParam) {
       getPagedUrlsController(req, res, next);
