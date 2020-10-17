@@ -1,6 +1,6 @@
-import request from 'supertest';
+const request = require('supertest');
 
-import app from '../../../../../../app';
+const app = require('../../../../../../app');
 const { shortenUrl } = require('../../../../../../components/urls');
 
 const apiBase = '/api/v1';

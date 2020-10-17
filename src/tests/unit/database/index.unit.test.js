@@ -1,4 +1,4 @@
-import database from '../../../db';
+const database = require('../../../db');
 
 describe('test fake database implementation', () => {
   test('returns null for non existent record on databse', () => {

@@ -1,4 +1,4 @@
-import { ValidationError } from 'joi';
+const { ValidationError } = require('joi');
 
 /**
  * Error wrapper to determine if the provided error is
@@ -8,7 +8,7 @@ import { ValidationError } from 'joi';
  * @param {Error} error - error capture in controller try catch
  * @returns {Object} res
  */
-export default function errorWrapper(res, error) {
+function errorWrapper(res, error) {
   switch (error instanceof ValidationError) {
     case true:
       return res.status(422).send({ error: 'ValidationError' });
@@ -18,3 +18,5 @@ export default function errorWrapper(res, error) {
         .send({ error: error.message || 'Unexpected internal server error' });
   }
 }
+
+module.exports = errorWrapper;
