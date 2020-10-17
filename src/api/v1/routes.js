@@ -1,10 +1,10 @@
-import express from 'express';
+const express = require('express');
 
-import {
+const {
   createShortUrlController,
   bulkCreateShortUrlController,
   getUrlController,
-} from './controllers/urls';
+} = require('./controllers/urls');
 
 const router = express.Router();
 const apiBase = '/api/v1';
@@ -17,4 +17,4 @@ router.get(`${apiBase}/short_urls`, getUrlController);
 router.post(`${apiBase}/short_urls`, createShortUrlController);
 router.post(`${apiBase}/short_urls/bulk`, bulkCreateShortUrlController);
 
-export default router;
+exports.default = router;
