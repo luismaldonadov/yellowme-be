@@ -10,11 +10,11 @@ async function getUrlController(req, res, next) {
     const urlParam = req.query.url;
     validateUrl(urlParam);
     const url = database.get(urlParam);
-    switch (urlParam) {
+    switch (url) {
       case null:
         return res.status(404).send({ shortUrl: null });
       default:
-        return res.status(200).redirect(301, url);
+        return res.status(200).redirect(302, url);
     }
   } catch (error) {
     return errorWrapper(res, error);
