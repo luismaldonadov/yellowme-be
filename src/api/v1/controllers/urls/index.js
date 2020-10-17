@@ -30,7 +30,7 @@ async function getPagedUrlsController(req, res, next) {
   }
 }
 
-async function createShortUrl(req, res, next) {
+async function createShortUrlController(req, res, next) {
   try {
     const shortUrl = shortenUrl(req.body.url);
     return res.send({ shortUrl });
@@ -40,4 +40,4 @@ async function createShortUrl(req, res, next) {
   }
 }
 
-export { getUrlController, getPagedUrlsController, createShortUrl };
+export { getUrlController, getPagedUrlsController, createShortUrlController };
