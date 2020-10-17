@@ -1,6 +1,7 @@
 ## Prerequisites
 
 - Node v12.16.1
+- npm 6.13.4
 
 ## Enviroment variables
 
@@ -24,6 +25,8 @@ SHORT_URL_DOMAIN=http://fake.url
 
 ## How to run
 
+- Clone the repository in your desired directory
+- From your cli change into the repo directory
 - Create an .env file in root directory
 - Set values in .env file for
 
@@ -33,8 +36,6 @@ MAX_LENGTH_SHORT_URL=<integer>
 SHORT_URL_DOMAIN=<string>
 ```
 
-- Clone the repository in your desired directory
-- From your cli change into the repo directory
 - Run command npm install in the root directory
 - Run command npm test , to check everything is running properly, 11 test total have to pass.
 - Run npm start to run your local enviroment, you should see something like this in your cli
