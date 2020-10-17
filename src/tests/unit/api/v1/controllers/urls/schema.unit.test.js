@@ -2,7 +2,7 @@ const {
   validateUrl,
 } = require('../../../../../../api/v1/controllers/urls/schema');
 
-import { ValidationError } from 'joi';
+const { ValidationError } = require('joi');
 
 describe('test url schema ', () => {
   test('throws a Joi Validation error when passed a wrong url', () => {
