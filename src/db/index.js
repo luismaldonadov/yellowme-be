@@ -29,4 +29,4 @@ const database = (function start_database() {
   };
 })();
 
-export default database;
+exports.default = database;
