@@ -4,7 +4,7 @@
   "description": "Yellowme backend interview webservice",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "NODE_PATH=src/ jest --runInBand",
     "dev": "NODE_PATH=src/ nodemon src/index.js",
     "start": "NODE_PATH=src/ node src/index.js"
   },
@@ -35,10 +35,5 @@
   },
   "devDependencies": {
     "jest": "^26.5.3"
-  },
-  "jest": {
-    "modulePaths": [
-      "<rootDir>/src/"
-    ]
   }
 }

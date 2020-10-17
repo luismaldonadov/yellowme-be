@@ -1,6 +1,6 @@
 const request = require('supertest');
 
-const app = require('/app');
+const app = require('app');
 const { shortenUrl } = require('components/urls');
 
 const apiBase = '/api/v1';
