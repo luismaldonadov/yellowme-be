@@ -15,7 +15,7 @@ export default function shortenUrl(longUrl) {
     case null:
       const shortPath = getRandomUrl('');
       const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
-      database.set(longUrl, fullShortUrl);
+      database.set(fullShortUrl, longUrl);
       return fullShortUrl;
     default:
       return shortUrl;

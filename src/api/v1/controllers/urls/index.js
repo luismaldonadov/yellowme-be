@@ -17,7 +17,7 @@ async function getUrlController(req, res, next) {
         case null:
           return res.status(404).send({ shortUrl: null });
         default:
-          return res.send({ shortUrl: url });
+          return res.status(200).redirect(301, url);
       }
     }
   } catch (error) {
@@ -30,7 +30,7 @@ async function getPagedUrlsController(req, res, next) {
     //TODO: Paged urls
     return res.send();
   } catch (error) {
-    return res.status(500).send(error);
+    return errorWrapper(res, error);
   }
 }
 
@@ -39,8 +39,7 @@ async function createShortUrlController(req, res, next) {
     const shortUrl = shortenUrl(req.body.url);
     return res.send({ shortUrl });
   } catch (error) {
-    console.log('error', error);
-    return res.status(500).send(error);
+    return errorWrapper(res, error);
   }
 }
 
