@@ -19,4 +19,4 @@ function errorWrapper(res, error) {
   }
 }
 
-exports.default = errorWrapper;
+module.exports = errorWrapper;
