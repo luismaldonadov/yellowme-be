@@ -1,4 +1,4 @@
-const database = require('../../db');
+const database = require('db');
 
 /**
  * Creates a short url with a provided long url.
@@ -25,6 +25,7 @@ function processBulkUrls(urls) {
   const shortUrls = urls.map((longUrl) => {
     const shortPath = getRandomUrl();
     const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
+    database.set(fullShortUrl, longUrl);
     return { shortUrl: fullShortUrl, url: longUrl };
   });
   return shortUrls;

@@ -1,12 +1,13 @@
-const database = require('../../../../db');
-const errorWrapper = require('../../../../utils/errorWrapper');
-const { shortenUrl, processBulkUrls } = require('../../../../components/urls');
+const database = require('db');
+const errorWrapper = require('utils/errorWrapper');
+const { shortenUrl, processBulkUrls } = require('components/urls');
 const { validateUrl, validateBulkUrls } = require('./schema');
 
 async function getUrlController(req, res, next) {
   try {
     const urlParam = req.query.url;
     validateUrl(urlParam);
+    console.log('databaes all', database.all());
     const url = database.get(urlParam);
     switch (url) {
       case null:
