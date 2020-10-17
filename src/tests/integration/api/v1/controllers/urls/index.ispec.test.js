@@ -95,6 +95,14 @@ describe('bulkCreateShortUrlContoller', () => {
   });
 });
 
+/**
+ * With a given amount, generates urls
+ * with a predefined domain
+ * @param {Number} amount - amount of urls to generate
+ * @param {Number} urlNumber - url number that will be generated
+ * @param {Array} fakeUrls - fake urls generated
+ * @returns {Array}
+ */
 function _fakeBulkUrlGeneratorFixture(amount, urlNumber, fakeUrls) {
   if (fakeUrls.length >= amount) {
     return fakeUrls;
