@@ -9,17 +9,10 @@ import database from '../../db';
  * @returns {String}
  */
 export default function shortenUrl(longUrl) {
-  const shortUrl = database.get(longUrl);
-
-  switch (shortUrl) {
-    case null:
-      const shortPath = getRandomUrl('');
-      const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
-      database.set(fullShortUrl, longUrl);
-      return fullShortUrl;
-    default:
-      return shortUrl;
-  }
+  const shortPath = getRandomUrl('');
+  const fullShortUrl = `${process.env.SHORT_URL_DOMAIN}/${shortPath}`;
+  database.set(fullShortUrl, longUrl);
+  return fullShortUrl;
 }
 
 /**
